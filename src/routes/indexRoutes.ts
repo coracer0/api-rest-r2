@@ -12,9 +12,6 @@ class IndexRoutes {
 
     config(): void{
         this.router.get('/',indexController.list);
-        this.router.post('/',[checkJwt],indexController.update);
-        this.router.put('/',[checkJwt],indexController.insert);
-        this.router.delete('/',[checkJwt],indexController.delete);
     }
 }
 const indexRoutes = new IndexRoutes();
