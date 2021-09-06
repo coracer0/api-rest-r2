@@ -4,7 +4,7 @@ class ProductDAO {
   public async lista() {
     const result = await pool.then(async (connection) => {
       return await connection.query(
-        "SELECT cveProducto,nombre, descripcion, precioUnitario,cantidad  FROM producto"
+        "select p.cveProducto,p.nombre,p.descripcion, p.cantidad,p.precioUnitario, p.fechaRegistro ,concat(u.nombre,' ',u.apellidos) as nombrePersona from producto p INNER JOIN usuario u on p.cveUsuario = u.cveUsuario"
       );
     });
     return result;
