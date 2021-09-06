@@ -13,6 +13,8 @@ class ProductRoutes{
     config(): void{
         this.router.get('/',[checkJwt,checkRol(["Admin"])],productController.lista);
         this.router.put('/',[checkJwt,checkRol(["Admin"])],productController.insert);
+        this.router.post('/',[checkJwt,checkRol(["Admin"])],productController.update);
+        this.router.delete('/:cveProducto',[checkJwt,checkRol(["Admin"])],productController.delete);
     }
 
 

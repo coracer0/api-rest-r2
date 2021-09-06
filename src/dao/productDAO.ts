@@ -17,11 +17,34 @@ class ProductDAO {
     return result;
   }
 
-  public async verifyProduct(nombre: string){
-      const result = await pool.then(async (connection) =>{
-          return await connection.query("SELECT * FROM producto where nombre = ? ",nombre)
-      });
-      return result;
+  public async verifyProduct(nombre: string) {
+    const result = await pool.then(async (connection) => {
+      return await connection.query(
+        "SELECT * FROM producto where nombre = ? ",
+        nombre
+      );
+    });
+    return result;
+  }
+
+  public async update(producto: any) {
+    const result = await pool.then(async (connection) => {
+      return await connection.query(
+        "UPDATE producto SET ? WHERE cveProducto = ?",
+        [producto, producto.cveProducto]
+      );
+    });
+    return result;
+  }
+
+  public async delete(cveProducto: number) {
+    const result = await pool.then(async (connection) => {
+      return await connection.query(
+        "DELETE FROM producto WHERE cveProducto = ?",
+        cveProducto
+      );
+    });
+    return result;
   }
 }
 
