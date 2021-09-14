@@ -30,7 +30,8 @@ class VentaController {
 
           
       if (result.affectedRows > 0) {
-        return res.json({ message: "Datos guardados exitosamente" });
+        const cveVenta = await dao.selectedVenta();
+        return res.json(cveVenta);
       } else {
         return res.status(409).json({ message: result.message });
       }
@@ -38,6 +39,26 @@ class VentaController {
       res.status(500).json({ message: ex.message });
     }
   }
+
+  public async verProductos(req:Request, res:Response){
+    try{
+    const result = await dao.verProductos();
+    console.log(result);
+     res.json(result);
+    }catch (ex) {
+      res.status(500).json({ message: ex.message });
+    }
+  }
+
+  public async verCantidad(req:Request,res: Response){
+    const { cveProducto } = req.params;
+  
+    const result = await dao.verCantidad(parseInt(cveProducto));
+
+    res.json(result);
+
+  }
 }
+
 
 export const ventaController = new VentaController();

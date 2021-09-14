@@ -7,6 +7,7 @@ import indexRoutes from "./routes/indexRoutes";
 import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
 import productRoutes from "./routes/productRoutes";
+import ventaRoutes from "./routes/ventaRoutes";
 
 class Server {
   public app: Application;
@@ -31,6 +32,7 @@ class Server {
     this.app.use('/auth',authRoutes);
     this.app.use('/user',userRoutes);
     this.app.use('/product',productRoutes);
+    this.app.use('/ventas',ventaRoutes)
   }
 
   //Inicialización del servidor
